@@ -1,0 +1,1634 @@
+
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+
+\documentclass[a4paper]{report}
+
+\usepackage[tmargin=1in,bmargin=1in,lmargin=0.75in,rmargin=0.75in]{geometry}
+
+\linespread{1.5}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox}
+\begin{document}
+\pagestyle{fancy}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+            
+        \Huge
+        \textbf{Maths and Statistics for AI and Data Science}
+            
+        \vspace{0.5cm}
+        \LARGE
+        Practical Assessment – 1
+            
+        \vspace{1.5cm}
+            
+        \textbf{by Uttara Naidu}
+            
+        \vfill
+            
+        Submitted to            
+
+        The University of Liverpool\\
+
+        05/05/2025
+            
+    \end{center}
+\end{titlepage}     
+
+
+\lhead[LO,LE]{\includegraphics[width=1.5in]{logo.png}}
+%\fancyhead[LO,LE]{}
+
+\section*{Question 1}
+
+1. a) Function $f(x)=2x+3$ , $g(x)=x^3$ . Find $f{\circ}g$ and inverse of $f{\circ}g$ .  
+
+b) Find the derivative of the functions  $f(x)=\sin x \ln \cos 2x+6{e^x}$ 
+
+c) Find the critical points for function ,$f(x)=-x^3+6x^2+15x+4, x\in \mathbf{R}$  , and state if the critical points are minima or maxima 
+
+\textit{Provide appropriate justification and explanation to all your answers, detailing the methods used.}
+
+\subsection*{Solution:}
+
+\subsubsection*{a) Find  $f{\circ}g$ and inverse of $f{\circ}g$}
+
+\paragraph{a.1) Find $f{\circ}g$}
+
+\subparagraph{}
+
+The $f{\circ}g$ denotes a composite function (Hass, 2019), meaning a combination of functions $f(x)$ and $g(x)$. To evaluate a composite function, below definition is applied:
+
+\begin{equation} 
+    \color{blue} f{\circ}g (x)=f(g(x)) \tag{A}
+\end{equation}
+
+We have,
+
+\begin{align}
+\begin{split} \label{1}
+ f(x) = 2x + 3   
+\end{split}\\
+\begin{split} \label{2}
+    g(x) = x^3
+\end{split}
+\end{align}
+
+Applying the definition $(A)$ to equations $(1)$ and $(2)$ , we get: 
+
+\begin{align}
+    \begin{split}
+       (f{\circ}g)(x)& = f(g(x)) \\
+      f(x^3) &= 2{x^3}+3 \\
+    \end{split}
+\end{align}
+
+
+\paragraph{a.2) Inverse of $f{\circ}g$ i.e. $[{(f{\circ}g)(x)}]^{-1}$}
+
+\subparagraph{}
+
+The inverse of a function $f^{-1}$ , if $f(a)=b$ is defined by (Hass, 2019),
+
+\begin{equation} 
+    \color{blue} f^{-1}(b) = a \tag{B}
+\end{equation}
+
+Using equation (3) and solving for $x$ in terms of $y$
+
+\begin{align*}
+    \begin{split}
+      f(x^3) &= 2{x^3}+3 \\
+          y&=2{x^3}+3
+    \end{split}
+\end{align*}
+
+\newpage Interchanging $y$ and $x$ to solve for $y$,
+
+\begin{align*}
+    x&= 2{y^3}+3 \\
+    2{y^3}&= x-3 \\
+    y^3&= \frac{x}{2}-\frac{3}{2}\\
+    y&=\sqrt[3]{\frac{x-3}{2}}
+\end{align*}
+
+Rationalizing the denominator by multiplying the numerator and the denominator by ${\sqrt[3]{2^2}}$, we get,
+
+\begin{align*}
+    y&=\frac{\sqrt[3]{x-3}}{\sqrt[3]2} \\
+    y&=\frac{\sqrt[3]{x-3}}{\sqrt[3]2} * \frac{{\sqrt[3]{2^2}}}{{\sqrt[3]{2^2}}} 
+  =\frac{\sqrt[3]{x-3}}{\sqrt[3]2} * \frac{{\sqrt[3]4}}{{\sqrt[3]4}}\\
+    y&=\frac{\sqrt[3]{4(x-3})}{2}
+\end{align*}
+
+Replacing $y$ with $f^{-1}$ as per definition (B),
+
+\begin{align}
+    f^{-1}(x)&=\frac{\sqrt[3]{4(x-3})}{2}
+\end{align}
+
+
+Therefore from equations (3) and (4), we have,
+
+\begin{equation*}
+    \boxed{(f{\circ}g)(x) = 2{x^3}+3}
+\end{equation*}
+
+
+\begin{equation*}
+    \boxed{[(f{\circ}g)(x)]^{-1} = \frac{\sqrt[3]{4(x-3})}{2}}
+\end{equation*}
+
+
+
+
+\subsection*{b) Find the derivative of the given function }
+
+\paragraph{}
+
+We have the below function:
+
+\begin{equation*}
+    f(x)=\sin x \ln \cos 2x+6{e^x}
+\end{equation*}
+
+The sum rule of derivatives is given by,
+
+\begin{equation*}
+    \color{blue} \frac{dx}{dy}({u+v}) = \frac{du}{dx}+\frac{dv}{dx} \tag{C}
+\end{equation*}
+
+Applying this rule to the given function as below,
+
+\begin{align*}
+     f'(x)&=\frac{d}{dx}[\sin x \ln \cos 2x+6{e^x}] \\
+     f'(x)&=\frac{d}{dx}\sin x \ln \cos 2x + \frac{d}{dx}6{e^x}
+\end{align*}
+
+For ease of computing, splitting the terms on right hand side as:
+
+$$f'(x)=f'(l)+f'(r)$$
+
+
+where,
+
+\begin{align}
+    f'(l)&=\frac{d}{dx}\sin x \ln \cos 2x \\
+    f'(r)&=\frac{d}{dx}6{e^x}
+\end{align}
+
+\paragraph{b.1) Let's solve $f'(l)$ first:}
+
+\subparagraph{}
+
+
+The product rule of derivatives is given by,
+
+\begin{equation*}
+    \color{blue} \frac{d}{dx}({uv}) = u\frac{dv}{dx}+v\frac{du}{dx} \tag{D}
+\end{equation*}
+
+Applying this rule to $f'(l)$ from equation (5), we get,
+
+\begin{align*}
+    f'(l)=\sin x \frac{d}{dx}\ln \cos 2x + \ln \cos 2x \frac{d}{dx} \sin x
+\end{align*}
+
+The chain rule, in Leibniz's notation (Hass, 2019), if $y=f(u)$  and $u=g(x)$ is given by,
+
+\begin{equation*}
+    \color{blue} \frac{dy}{dx}=\frac{dy}{du}*\frac{du}{dx} \tag{E}
+\end{equation*}
+
+This rule is used to simplify the composite function $\ln \cos 2x$ as below,
+
+\begin{align*}
+    f'(l)= \sin x [ \frac{1}{\cos 2x} \frac{d}{dx}\cos 2x] + \ln \cos 2x *\cos x
+\end{align*}
+
+The cosine derivative rule and trignometric rule is given by,
+
+\begin{align*} \tag{\color{blue} F}
+    \begin{split} 
+        \color{blue} \frac{d}{dx}(\cos x) = -\sin x 
+    \end{split}\\
+    \begin{split}
+        \color{blue} \tan x = \frac{\sin x}{\cos x}
+    \end{split}
+\end{align*}
+
+Applying both of these rules to $f'(l)$ as below,
+
+\begin{align*}
+    f'(l)&=\sin x [ \frac{1}{\cos 2x} -\sin 2x*2] + \cos x\ln \cos 2x \\
+        &=-2\sin x [ \frac{\sin 2x}{\cos 2x}] + \cos x\ln \cos 2x 
+\end{align*}
+
+\begin{equation}
+    f'(l)=\cos x\ln \cos 2x-2\sin x \tan 2x
+\end{equation}
+
+\paragraph{b.2) Now, solving $f'(r)$:}
+
+\subparagraph{}
+
+Referring to equation (6),
+
+\begin{align*}
+    f'(r)=\frac{d}{dx}6{e^x}
+\end{align*}
+
+
+The derivative constant rule is given by,
+
+\begin{equation*}
+    \color{blue} \frac{d}{dx}{cu} = c\frac{du}{dx} \tag{G}
+\end{equation*}
+
+Applying this rule to $f'(r)$, we get
+
+\begin{align*}
+    f'(r)=6 \frac{d}{dx}e^x
+\end{align*}
+
+
+The derivative rule of an exponential function is given by,
+
+\begin{equation*}
+    \color{blue} \frac{d}{dx}e^u = e^u \frac{du}{dx} \tag{H}
+\end{equation*}
+
+Applying this rule to $f'(r)$, we get
+
+\begin{align*}
+    f'(r)=6e^x\frac{d}{dx}x
+\end{align*}
+
+Applying the power rule, i.e.
+
+\begin{equation*}
+    \color{blue} \frac{d}{dx}{x^n} = x^{n-1} \tag{I}
+\end{equation*}
+
+The $f'(r)$ becomes,
+
+\begin{align*}
+    f'(r) &= 6e^x\times x^{1-1} \\
+          &= 6e^x\times x^{0} \\
+          &= 6e^x
+\end{align*}
+
+\begin{equation}
+    f'(r)= 6e^x
+\end{equation}
+
+
+Combining  equations (7) and (8), we get the final derivative as below:
+
+
+$$f'(x)=f'(l)+f'(r)$$
+
+
+
+\begin{equation*}
+    \boxed{f'(x)= \cos x\ln \cos 2x-2\sin x \tan 2x +6e^x}
+\end{equation*}
+
+
+\subsubsection*{c)  Find the critical points for function $f(x)=-x^3+6x^2+15x+4, x\in {R}$ and state if the critical points are minima or maxima.}
+
+
+As per definition (Hass, 2019), "An interior point of the domain of a function $f$ where $f'$ is zero or undefined is a critical point of $f$." Critical points are the points on the graph where the function's concativity is amended i.e. changed from increasing to decreasing concativity or vice a versa. 
+
+Following this, the steps we incorporate to determine the critical points of the given function $f(x)$ are: \newline 1. Determine the derivative $f'(x)$ of the given function
+\newline 2. Equate $f'(x)$ to $0$ to calculate critical points
+
+\paragraph{Step 1: Find $f'(x)$}
+
+\subparagraph{}
+
+We have,
+
+$$f(x)=-x^3+6x^2+15x+4$$
+
+$$ f'(x)=\frac{d}{dx}[-x^3+6x^2+15x+4]$$
+
+Applying sum rule as given by (C) and derivative of constant function from (G), we get,
+
+\begin{align*}
+    f'(x)=\frac{d}{dx}(-x^3)+6\frac{d}{dx}(x^2)+15\frac{d}{dx}x+\frac{d}{dx}(4)
+\end{align*}
+
+Further, applying power rule of derivatives from (I),
+
+\begin{align*}
+    f'(x)&=3\times(-x)^{3-1}+6\times2(x^{2-1})+15\times x^{1-1}+0 \\
+    f'(x)&=-3x^2+12x+15
+\end{align*}
+
+
+\paragraph{Step 2: Find critical points}
+
+\subparagraph{}
+
+As per the definition, to find critical points, we equate the derivative to $0$
+
+$$f'(x) =0$$
+$$-3x^2+12x+15 = 0$$
+
+Dividing both sides by 3, we get,
+
+\begin{align*}
+    -x^2+4x+5&=0 \\
+    (-1) (x^2-5x+x-5&=0 \\
+    (-1)(x-5)(x+1)&=0
+\end{align*}
+
+
+
+Solving for $x$, by setting
+
+
+$$\begin{array}{cc}
+    x-5=0, & x=5  \\
+     x+1=0, & x=-1
+\end{array}$$
+
+
+Evaluating function $f(x)$ at each of these values of $x$:
+
+i) $x=5$
+
+\begin{align*}
+    f(5)&=-5^3+6\times 5^2+15 \times 5+4 \\
+        &=-125+150+75+4 \\
+        &=104
+\end{align*}
+
+
+ii) $x=-1$
+
+\begin{align*}
+    f(-1)&=-(-1^3)+6 \times (-1^2)+15 \times -1+4 \\
+        &=1+6-15+4 \\
+        &=-4    
+\end{align*}
+
+
+The critical points are:
+
+$(5,104)$ and $(-1,-4)$
+
+
+%\begin{tikzpicture}
+%\begin{axis}[xmin=-6, xmax=6, ymin=-11, ymax=11, axis x line=middle, axis y line=middle]
+%\addplot[domain=-3:3,samples=100]{exp(-x^3+6*exp(x^2)+15*x+4)};
+%\addplot[mark=*] coordinates {(5,104)};
+%\addplot[mark=*] coordinates {(-1,-4)};
+%\end{axis}
+%\end{tikzpicture}
+
+
+\section*{Question 2}
+
+2. Function $f(x,y)=x^2 y^3+y^2+2x(y+1)$  Suppose the initial values are given $x_0=1,y_0=0$ , and the learning rate is set to 0.01 
+
+a) Perform one iteration of the gradient descent algorithm 
+
+b) Find the Hessian matrix of  $f(x,y)$
+
+\textit{Provide appropriate justification and explanation to all your answers, detailing the methods used.}
+
+
+\subsection*{Solution:}
+
+\subsubsection*{a)  Gradient Descent algorithm Iteration}
+
+\paragraph{}
+
+
+The mathematical formula for calculating iteration step size in Gradient Descent algorithm is (UoL,2025):
+
+\begin{equation}
+    \color{blue} \rho_{n+1} = \rho_n - \eta \nabla f(\rho_n) \tag{A}
+\end{equation}
+
+
+
+The given function is,
+
+$$f(x,y)=x^2 y^3+y^2+2x(y+1)$$
+
+Substituting the values $x_0=1$ and $y_0=0$ in the function, we get,
+
+\begin{align*}
+    f(x_0,y_0)&= x_0^2 y_0^3+y_0^2+2x_0(y_0+1) \\
+    &= (1^2)\times 0+0+2\times(1) (0+1) \\
+    &= 2
+\end{align*}
+
+
+Hence, the starting point of optimization is,
+
+\begin{align}
+    f(x_0,y_0) =2
+\end{align}
+
+As per formula (A), the first iteration can be calculated with below equation:
+
+\begin{align}
+    \rho_{x_1,y_1} = \rho_{x_0,y_0} - \eta \nabla f(\rho_{x_0,y_0})
+\end{align}
+
+Partial derivatives of functions with two variables (dependent or independent) are normal derivatives, with respect to only one variable at a time (Hass, 2019). 
+\newline Based on this, below calculation represents the derivatives of $f(x,y)$ w.r.t. $x$ i.e. $f_x$ and w.r.t. $y$ i.e. $f_y$:
+
+$$\nabla f =
+\left [\begin{array}{cc}
+    \underbrace{\pd{f}{x}}_{\text{{$f_x$}}} & \underbrace{\pd{f}{y}}_{\textbf{{$f_y$}}}
+\end{array}\right] = \left [\begin{array} {cc}
+    \pd{}{x}[x^2 y^3+y^2+2x(y+1)] & \pd{}{y}[x^2 y^3+y^2+2x(y+1)]
+\end{array}\right] $$
+
+
+Applying constant and power derivative rules (as mentioned in (G) and (I) earlier) and calculating partial derivatives of $f(x,y)$ as below:
+
+
+\begin{equation} \nabla f =
+\begin{bmatrix}
+     2xy^3+2(y+1) & 3x^2y^2+2y+2x
+\end{bmatrix}
+\end{equation}
+
+
+Substituting values from equations (9), (11) and learning rate $\eta$ in equation (10), we get,
+
+\begin{align*}
+\rho_{x_1,y_1} &= \rho_{x_0,y_0} - \eta \nabla f(\rho_{x_0,y_0}) \\
+&=(1,0)-(0.01)\times [2 \cdot 1 \cdot 0 + 2(0+1), 3 \cdot (1^3)\cdot 0 + 2\cdot 0+2\cdot 1] \\
+&=(1,0) - 0.01 (2,2) \\
+&= (1,0) - (0.02, 0.02) \\
+&=(0.98, -0.02)
+\end{align*}
+
+\begin{equation}
+    \rho_{x_1,y_1} = (0.98, -0.02)
+\end{equation}
+
+
+Computing $f(0.98,-0.02)$ as below to get value of the function:
+
+\begin{align*}
+f(x_1,y_1)&= x_1^2 y_1^3+y_1^2+2x_1(y_1+1) \\
+&=(0.98^2)(-0.02^3)+(-0.02^2)+2\cdot (0.98)(-0.02+1) \\
+&=1.92
+\end{align*}
+
+
+\subsubsection*{b) Hessian Matrix calculation}
+
+Hessian matrix is a matrix of second order partial derivativatives which is used to calculate the curvature information of a given function. (Sharma, 2022)
+
+A Hessian matrix is given as below:
+
+\[\ H_f=
+\begin{bmatrix}
+    \pd{^2f}{x_1^2} & \pd{^2f}{x_1x_2} & ... & \pdd{f}{x_n} \\
+    \pd{^2f}{x_2x_1} & \pd{^2f}{x_2^2} & ... & \pd{^2f}{x_2x_n} \\
+    .&.&.&. \\
+    .&.&.&. \\
+    \pd{^2f}{x_nx_1} & \pd{^2f}{x_nx_2} & ... & \pd{^2f}{x_n^2} \\
+    
+\end{bmatrix} \]
+
+Hessian matrix is always a square matric with its dimension equal to the number of variables of a function. Therefore, for the function $f(x,y)$ with two variables, the dimension will be $2\times 2$ and can be written as:
+
+\[\ H_{f(x,y)} =
+\begin{bmatrix}
+    \pd{^2f}{x^2} & \pd{^2f}{xy} \\
+    \pd{^2f}{yx} & \pd{^2f}{y^2}     
+\end{bmatrix} \]
+
+Referring to equation (11), we have already obtained the First order partial derivatives of $f(x,y)$:
+
+\begin{align*}
+    \pd{f}{x} &= 2xy^3+2(y+1) \\
+    \pd{f}{y} &= 3x^2y^2+2y+2x
+\end{align*}
+
+
+Second order partial derivatives of $f(x,y)$ are as below:
+
+\begin{align*}
+    \pd{^2f}{x^2}&=2y^3 \\
+    \pd{^2f}{y^2} &= 6x^2y+2 \\
+    \pd{^2f}{x\partial y} &= \pd{}{x}(\pd{f}{y}) = \pd{}{x}(3x^2y^2+2y+2x) = 6xy^2+2 \\
+    \pd{^2f}{y\partial x} &= \pd{}{y}(\pd{f}{x}) = \pd{}{y}(2xy^3+2(y+1)) = 6xy^2+2
+\end{align*}
+
+
+
+Therefore, the final Hessian matrix is as given below:
+
+
+\[\ \boxed{ H_{f(x,y)} =
+\begin{bmatrix}
+    2y^3 & 6xy^2+2 \\
+    6xy^2+2 & 6x^2y+2     
+\end{bmatrix}} \]
+
+\newpage
+\section*{Question 3}
+
+3. Take this system of linear equations
+
+\begin{align*}
+    x+y-z&=-3 \\
+2x+3y-8z&=-18 \\
+5x+6y-10z&=-25)
+\end{align*}
+
+
+a) Write this system as a Matrix vector equation 
+
+b) Calculate the determinant and thereby determine if there is a unique solution to this system of equations 
+
+c) Write this as an augmented matrix and solve this system of equations 
+
+\textit{Provide appropriate justification and explanation to all your answers, detailing the methods used.}
+
+\subsection*{Solution:}
+
+\subsubsection*{a)  Matrix vector equation}
+
+
+A matrix equation has the form (Fred,2015):
+
+\begin{equation}
+    \color{blue} Ax=b \tag{A}
+\end{equation}
+
+where,
+\newline $A$ is any $m\times m$  or $m\times n$ matrix called as coefficient matrix
+\newline $x$ is a vector of unknown variables, $n\times 1$ column vector
+\newline $b$ is $m \times 1$ column vector
+
+Lipschutz says that a system of linear equations is a list of linear equations with same unknowns (2009,pp.58). In this problem statement we have 3 linear equations with 3 unknowns in a $3\times 3$ system.
+
+The vector addition and scaler multiplication properties of a vector are given by,
+
+\begin{equation}
+    If\ a= \begin{bmatrix}
+        a_1\\a_2\\.\\.\\a_n
+    \end{bmatrix},b= \begin{bmatrix}
+        b_1\\b_2\\.\\.\\b_n
+    \end{bmatrix}, then\ a+b=\begin{bmatrix}
+        a_1+b_1\\a_2+b_2\\.\\.\\a_n+b_n
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    If\ 'k' \ is\ a\ scaler,\ a = \begin{bmatrix}
+        a_1\\a_2\\.\\.\\a_n
+    \end{bmatrix}, then\ ka=\begin{bmatrix}
+        ka_1\\ka_2\\.\\.\\ka_n
+    \end{bmatrix}
+\end{equation}
+
+Referring to these properties, we can separate and extract 3 vectors from the given system of linear equations:
+
+\[\
+u:x\begin{bmatrix}
+    1 \\
+    2 \\
+    5
+\end{bmatrix} , v:y\begin{bmatrix}
+    1 \\
+    3 \\
+    6
+\end{bmatrix} , w:x\begin{bmatrix}
+    -1 \\
+    -8 \\
+    -10
+\end{bmatrix}\]
+
+We can further rewrite the system of equations in below form:
+
+\begin{align}
+\begin{bmatrix}
+    1&1&-1 \\
+    2&3&-8 \\
+    5&6&-10
+\end{bmatrix} \begin{bmatrix}
+    x \\
+    y \\
+    z
+\end{bmatrix} = \begin{bmatrix}
+    -3 \\
+    -18 \\
+    -25
+\end{bmatrix} 
+\end{align}
+
+Comparing (15) to formula (A), we have the representation of the system of linear equations in the Matrix vector equation.
+
+                                                                        
+\subsubsection*{b) Calculate determinant}
+
+Determinant is an essential tool for gathering and inspecting properties of square matrices (Lipschutz,2009). In this problem statement, the given system of lienar equations has a unique solution if and only if its determianat i.e. $|A| \neq 0$.
+
+\[\det A= \begin{vmatrix}
+    1&1&-1 \\
+    2&3&-8 \\
+    5&6&-10
+\end{vmatrix} \]
+    
+\begin{align*}
+    |A| &= (1)[(3)\times(-10) - (-8)\times6]-(1)[(2)\times(-10)-(-8)\times(5)]+(-1)[2\times6-3\times5] \\
+    &=18-20+3
+\end{align*}
+
+\begin{align}
+    \boxed{|A|= 1}
+\end{align}
+
+Since $|A| \neq 0$ , this system has a unique solution. 
+
+\subsubsection*{c) Solving this system of linear equations}
+
+The linear equations can be presented as an Augmented matrix as below:
+
+
+$$A=\left[\begin{array}{ccc|c}
+1&1&-1& -3 \\
+    2&3&-8&-18 \\
+    5&6&-10&-25
+\end{array}\right]$$
+\vspace{2mm}
+
+Using Gaussian elimination, we find the Row Echelon Form of the matrix as below:
+
+\vspace{2mm}
+
+\vspace{2mm}
+
+$\left[\begin{array}{ccc|c}
+1&1&-1& -3 \\
+    2&3&-8&-18 \\
+    5&6&-10&-25
+\end{array}\right] \rightarrow\ R_2=R_2-2R_1\rightarrow\left [\begin{array}{ccc|c}
+1&1&-1& -3 \\
+    1&1&-6&-12 \\
+    5&6&-10&-25
+\end{array}\right] \rightarrow\ R_3=R_3-5R_1\rightarrow\left [\begin{array}{ccc|c}
+1&1&-1& -3 \\
+    1&1&-6&-12 \\
+    0&1&-5&-10
+\end{array}\right] \rightarrow\ R_3=R_3-R_2\rightarrow\left [\begin{array}{ccc|c}
+1&1&-1& -3 \\
+    1&1&-6&-12 \\
+    0&0&1&2
+\end{array} \right] \rightarrow\ R_1=R_1-R_2\rightarrow\left [\begin{array}{ccc|c}
+1&0&5& 9 \\
+    0&1&-6&-12 \\
+    0&0&1&2
+\end{array}\right] \rightarrow R_2=R_2+6R_3\rightarrow \left [\begin{array}{ccc|c}
+1&0&5& 9 \\
+    0&1&0&0 \\
+    0&0&1&2
+\end{array}\right] \rightarrow R_1=R_1-5R_3\rightarrow \left [\begin{array}{ccc|c}
+1&0&0& -1 \\
+    0&1&0&0 \\
+    0&0&1&2
+\end{array}\right]$
+
+\vspace{10mm}
+
+From the reduced Echelon form matrix, we see that 
+\[\ \boxed{
+\begin{bmatrix}
+    x \\
+    y \\
+    z
+\end{bmatrix} = \begin{bmatrix}
+    -1 \\
+    0 \\
+    2
+\end{bmatrix} }\]
+
+In other words, $x=-1, y=0, z=2$
+
+\vspace{10mm}
+
+\section*{Question 4}
+
+For a linear transformation T: $\mathbf{R}^3 -> \mathbf{R}^4$ . 
+\[\ T= \begin{bmatrix}
+    x_1\\
+    x_2\\
+    x_3
+\end{bmatrix} = \begin{bmatrix}
+    2x_1+3x_2+x_3 \\
+    x_1-3x_2 \\
+    x_1+x_2+x_3 \\
+    3x_1+2x_2+x_3
+\end{bmatrix}\]
+
+a) Determine the transformation matrix A 
+
+b) Determine rank(A) 
+
+c) Find the kernel and image of transformation T, and their dimension 
+
+\textit{Provide appropriate justification and explanation to all your answers, detailing the methods used.}
+
+\subsection*{Solution:}
+
+\subsubsection*{a) Transformation matrix A}
+
+
+We have the property of linear tranformation:
+
+\begin{align*}
+\begin{split}
+        T(\alpha_1v_1,\alpha_2v_2,..,\alpha_nv_n) = \alpha_1T(v_1)+\alpha_2T(v_2)+...+\alpha_nT(v_n)
+\end{split}\\
+\begin{split}
+    \ for\ all\ v_1,v_2...v_n\in V\ and\ \alpha_1,\alpha_2...\alpha_n\ are\ scalers
+\end{split}
+\end{align*}
+
+Applying the same to given $T(x)$, we get
+
+\[\ T(x)  = \begin{bmatrix}
+    2x_1+3x_2+x_3 \\
+    x_1-3x_2 \\
+    x_1+x_2+x_3 \\
+    3x_1+2x_2+x_3
+\end{bmatrix} = x_1\begin{bmatrix}
+    2 \\
+    1 \\
+    1 \\
+    3 
+\end{bmatrix} +x_2 \begin{bmatrix}
+    3 \\-3 \\ 1\\2
+\end{bmatrix} +x_3 \begin{bmatrix}
+    1\\0\\1\\1
+\end{bmatrix} \]
+
+\begin{align}
+    T(x)=\begin{bmatrix}
+    2&3&1 \\
+    1&-3&0 \\
+    1&1&1 \\
+    3&2&1
+\end{bmatrix} \begin{bmatrix}
+    x_1\\x_2\\x_3
+\end{bmatrix} 
+\end{align}
+
+\vspace{5mm}
+We have a Linear transformation formula:
+
+\begin{equation}
+    \color{blue} T(x) = Ax \tag{A}
+\end{equation}
+
+Comparing equation (17) with formula (A), we get matrix $A$:
+
+\begin{align}  A = \begin{bmatrix}
+    2&3&1 \\
+    1&-3&0 \\
+    1&1&1 \\
+    3&2&1
+\end{bmatrix} \end{align}
+
+\vspace{3mm}
+
+\subsubsection*{b) Determining the $rank(A)$}
+
+In order to find solutions of a linear system, there is a method to eliminate variables step by step using a technique known as Gaussian Elimination (Lipschutz,2009). With this reduction, we get a system of equations in its matrix form callen Row Echelon Form (REF). The below transitions of matrices demonstrate the Gaussian elimination to get the matrrix $A$ in its REF.
+
+\newpage
+
+\vspace{10mm}
+
+$\left[\begin{array} {ccc}
+    2&3&1 \\
+    1&-3&0 \\
+    1&1&1 \\
+    3&2&1
+\end{array} \right] \rightarrow R_1 = \frac{R_1}{2} \rightarrow \ \left[ \begin{array} {ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    1&-3&0 \\
+    1&1&1 \\
+    3&2&1
+\end{array} \right] \rightarrow  R_2=R_3-R_2 \rightarrow \left [\begin{array} {ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&4&1 \\
+    1&1&1 \\
+    3&2&1
+\end{array} \right]\rightarrow  R_3=3R_3-R_4 \rightarrow \left[\begin{array} {ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&4&1 \\
+    0&1&2 \\
+    3&2&1
+\end{array} \right] \rightarrow  R_4=R_4-3R_1 \rightarrow  \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&4&1 \\
+    0&1&2 \\
+    0&\frac{-5}{2}&\frac{-1}{2}
+\end{array}\right] \rightarrow R_2=\frac{R_2}{4} \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&1&\frac{1}{4} \\
+    0&1&2 \\
+    0&\frac{-5}{2}&\frac{-1}{2}
+\end{array}\right] \rightarrow R_4=\frac{5}{2}R_3+R_4 \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&1&\frac{1}{4} \\
+    0&1&2 \\
+    0&0&\frac{9}{2}
+\end{array}\right] \rightarrow R_3=R_3-R_2 \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&1&\frac{1}{4} \\
+    0&0&\frac{7}{4} \\
+    0&0&\frac{9}{2}
+\end{array}\right] \rightarrow R_3=\frac{4}{7} R_3 \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&1&\frac{1}{4} \\
+    0&0&1 \\
+    0&0&\frac{9}{2}
+\end{array}\right] \rightarrow R_4=\frac{9}{2} R_3 - R_4 \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&1&\frac{1}{4} \\
+    0&0&1 \\
+    0&0&0
+\end{array}\right] \rightarrow R_2=R_2-\frac{1}{4} R_3 \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&\frac{1}{2} \\
+    0&1&0\\
+    0&0&1 \\
+    0&0&0
+\end{array}\right] \rightarrow R_1=R_1-\frac{1}{2} R_3 \rightarrow \left[\begin{array}{ccc}
+    1&\frac{3}{2}&0 \\
+    0&1&0\\
+    0&0&1 \\
+    0&0&0
+\end{array}\right] \rightarrow R_1=R_1-\frac{3}{2} R_2 \rightarrow \left[\begin{array}{ccc}
+    1&0&0 \\
+    0&1&0\\
+    0&0&1 \\
+    0&0&0
+\end{array}\right] $
+
+\vspace{5mm}
+
+In the Row Echelon form, the number of pivot columns or linearly independent columns is 3.
+
+\begin{equation*}
+    \boxed{ rank(A) = 3}
+\end{equation*}
+
+\newpage
+
+\subsection*{c) Kernel and Image of Transformation and theor dimension}
+
+\paragraph{c.1) Determining Kernel $ker(T)$}
+
+\subparagraph{}
+
+As per definition, if $F:V->U$, then kernel of $F$ is the set of elements in $V$ that map into the zero vector $0$ in $U$ (Lipschutz,2009),
+
+\begin{equation}
+    \color{blue} Ker\ F=\{v\in V: F(v)=0\} \tag{B}
+\end{equation}
+
+So essentially, kernel is a set of all inputs taken to zero. Hence, for the given linear transformation, we have,
+
+\begin{align*}
+    ker(T)= \{x\in R^3 | Ax=0\}
+\end{align*}
+
+Using the matrix in Row Echelon Form (REF), and rewriting it in in form $Ax=0$  as below:
+
+\[ \begin{bmatrix}
+    1&0&0 \\
+    0&1&0\\
+    0&0&1 \\
+    0&0&0
+\end{bmatrix} \cdot \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    x_3
+\end{bmatrix} = \begin{bmatrix}
+    0 \\
+    0 \\
+    0
+\end{bmatrix}\]
+
+\vspace{5mm}
+Thus, the kernel contains only zero vector with a dimension 3: \[ \boxed{ ker(T)=\begin{bmatrix}
+    0 \\
+    0 \\
+    0
+\end{bmatrix}} \]
+
+\paragraph{c.2) Determining Image} 
+
+\subparagraph{}
+
+The $image$ is a span of column vectors of matrix $A$ (UoL,2025). It is given by,
+
+\begin{align*} \tag{\color{blue}C}
+    \color{blue} Im(T)&\color{blue}=Ax|x\in R^n\\
+    &\color{blue}=(\alpha_1,\alpha_2...\alpha_n)x|x\in R^n \\
+    &=\color{blue} span[(\alpha_1,\alpha_2...\alpha_n)] \in R^n
+\end{align*}
+
+
+Using this formula, we compute $Im(T)$ as the column space of REF of matrix $A$ as below:
+
+\begin{align*}
+\boxed{
+    Im(T)=span[\ \begin{pmatrix} \begin{bmatrix}
+        2\\1\\1\\3
+    \end{bmatrix},\begin{bmatrix}
+        3\\-3\\1\\2
+    \end{bmatrix}, \begin{bmatrix}
+        1\\0\\1\\1
+    \end{bmatrix}\end{pmatrix}  ]}
+\end{align*}
+
+\vspace{10mm}
+
+\section*{Question 5}
+
+ \[Matrix ,A=\begin{bmatrix}
+    2&-3\\1&6
+\end{bmatrix}\]
+
+a) Determine the inverse of matrix A 
+
+b) Find the singular value decomposition (SVD) of matrix A 
+
+c) Given the SVD of matrix, find the SVD of  
+
+\textit{Provide appropriate justification and explanation to all your answers, detailing the methods used.}
+
+\subsection*{Solution:}
+
+\subsubsection*{a) Determine Inverse of $A$}
+
+\[A=\begin{bmatrix}
+    2&-3\\1&6
+\end{bmatrix}\]
+
+\vspace{3mm}
+A square matrix $A \in R^{n\times n}$ is said to be invertible if its deteminant is not equal to 0 (Lipschutz,2009).
+
+\begin{align}
+    |A| &= 2 \times 6 - (-3) \times 1 = 15
+\end{align}
+
+
+Since $|A| \neq 0$, the given matrix $A$ is invertible.
+
+
+We have the below mathematical formula to determine inverse of a matrix:
+
+\begin{equation}
+    \color{blue} A^{-1}=\frac{1}{|A|}\cdot \left [\begin{array}{cc}
+    a&b\\c&d
+\end{array}\right]^{-1} = \frac{1}{|A|}\cdot \left [\begin{array}{cc}
+    d&-b\\-c&a
+\end{array}\right] \tag{B}
+\end{equation}
+
+Applying formula (B) and using deteminant from equation (19), we get,
+
+\[ A^{-1}=\frac{1}{15} \times \begin{bmatrix}
+    6&3\\-1&2
+\end{bmatrix} =\begin{bmatrix}
+    6\cdot \frac{1}{15}&(3)\cdot \frac{1}{15}\\-1\cdot \frac{1}{15}&2 \cdot \frac{1}{15}
+\end{bmatrix} \]
+
+
+\[  \boxed{A^{-1}= \begin{bmatrix}
+    \frac{2}{5}&\frac{1}{5}\\ \frac{-1}{15}&\frac{2}{15}
+\end{bmatrix}}\]
+
+
+
+\subsubsection*{b) Singular Value Decomposition (SVD) Calculation of matrix $A$}
+
+Singular Value Decomposition states that any matrix $A$ could be decomposed into a product of three matrices - two orthogonal matrices $U$ and $V$, and a diagonal matrix $\Sigma$.
+
+
+The SVD of a matrix $A$ is given by a decomposition of the below form:
+
+\begin{equation}
+    \color{blue} A=U\cdot \Sigma \cdot V^T \tag{C}
+\end{equation}
+
+\newpage
+Denoted as:
+
+\begin{equation}
+    \underbracket{A}_{original\ matrix}=\underbracket{U}_{Orthogonal\ matrix,\ L(A)} \cdot \underbracket{\Sigma}_{Diagonal\ matrix} \cdot \underbracket{ V^T}_{orthogonal\ matrix,\ R(A)} 
+\end{equation}
+
+
+\vspace{5mm}
+Since the given matrix $A$ is $2\times 2$ , the dimensions of SVD matrices will be,
+
+\begin{align*}
+    A_{n\times n}=U_{n\times n}\Sigma _{n\times n} V^T_{n\times n}
+\end{align*}
+
+
+
+\paragraph{Step 1: Find the right singular vectors of $A$ to compute matrix $V^T$}
+
+\subparagraph{}
+
+We will perform below sub-tasks in this step:
+\newline i) Compute $A^TA$. 
+\newline ii) Find Eigenvalues of $A^TA$.
+\newline iii) Using eigenvalues from step ii., compute eigenvectors of $A^TA$
+\newline iv) Find $V^T$
+
+\textbf{i) Determine $A^TA$}
+
+
+\[ A^TA =\begin{bmatrix}
+    2&1\\-3&6
+\end{bmatrix} \cdot \begin{bmatrix}
+    2&-3\\1&6
+\end{bmatrix}\]
+
+\[=\begin{bmatrix}
+    4+1&-6+6\\-6+6&9+36
+\end{bmatrix}\]
+
+\begin{align}
+A^TA = \begin{bmatrix}
+    5&0\\0&45
+\end{bmatrix}
+\end{align}
+
+
+\textbf{ii)Find Eigen values of $A^TA$ }
+
+As per the definition, for a square matrix $A$, a scaler $\lambda$ is called \textit{eigenvalue} of $A$ if there exists a non-zero column vector $v$ such that (Lipschutz,2009),
+
+\begin{align*}
+    Av=\lambda v \\
+    Av-\lambda v=0 \\ \tag{\color{blue}D}
+    \color{blue} (A-\lambda I)v=0
+\end{align*}
+
+Any vector satisfying formula (D) is called \textit{eigenvector} of $A$ corresponding to \textit{eigenvalue} $\lambda$. 
+
+ This equation has a non-zero solution if and only if,
+
+\begin{equation}
+    \color{blue} |A-\lambda I|=0 \tag{E}
+\end{equation}
+
+Using formula (E) to determine eigenvalues as below: 
+
+\begin{align*}
+    |A^TA-\lambda I|=0 
+\end{align*}
+
+
+\[\begin{vmatrix}
+    \begin{bmatrix}
+    5&0\\0&45
+\end{bmatrix} - \lambda \begin{bmatrix}
+    1&0\\0&1
+\end{bmatrix} \end{vmatrix} = 0\]
+
+\[\begin{vmatrix}
+    5-\lambda&0\\0&45-\lambda
+\end{vmatrix}=0\]
+
+\begin{align*}
+    (5-\lambda)(45-\lambda)=0
+\end{align*}
+
+Computing eigenvalues as,
+
+\begin{align*}
+    \begin{split}
+        5-\lambda=0,&\lambda=-5
+    \end{split}\\
+    \begin{split}
+        45-\lambda=0,&\lambda=-45
+    \end{split}
+\end{align*}
+
+The eigen values are: 
+
+\begin{align}
+    \lambda = 5\  and\  \lambda=45
+\end{align}
+
+
+\textbf{iii)Find Eigenventors}
+
+Using eigen values from (22), we now find Eigen vectors by rewriting formula (D) in terms of $x$:
+
+
+\begin{equation*}
+    (A^TA-\lambda I)x=0 
+\end{equation*}
+
+
+\[\begin{pmatrix}
+\begin{bmatrix}
+    5&0\\0&45
+\end{bmatrix}-\lambda \begin{bmatrix}
+    1&0\\0&1
+\end{bmatrix} \end{pmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix} =\begin{bmatrix}
+    0\\0
+\end{bmatrix} \]
+
+ \[ \begin{pmatrix}
+\begin{bmatrix}
+    5&0\\0&45
+\end{bmatrix}- \begin{bmatrix}
+    \lambda&0\\0&\lambda
+\end{bmatrix} \end{pmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix} =\begin{bmatrix}
+    0\\0
+\end{bmatrix} \]
+
+\textit{Calculating for $\lambda=45$}
+
+\[\begin{pmatrix}\begin{bmatrix}
+    5&0\\0&45
+\end{bmatrix}- \begin{bmatrix}
+    45&0\\0&45
+\end{bmatrix} \end{pmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\0
+\end{bmatrix}\]
+
+\[ \begin{bmatrix}
+    -40&0\\0&0
+\end{bmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\0
+\end{bmatrix}\]
+
+\vspace{5mm}
+
+Applying Gaussian elimination to the augmented matrix to reduce it to Row Echelon Form:
+
+\vspace{5mm}
+
+$\left [ \begin{array}{cc|c}
+-40&0&0\\0&0&0
+\end{array} \right ] \rightarrow R_1\times-\frac{1}{40} \rightarrow \left [\begin{array}{cc|cc}
+     1&0&0  \\
+     0&0&0 
+\end{array} \right]$
+
+
+
+\newpage Solving for null space:
+
+\[ \begin{bmatrix}
+    1&0\\0&0
+\end{bmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\0
+\end{bmatrix}\]
+
+\vspace{5mm}
+
+Solving this system in terms of free variables, we get below values of $x_1$ and $x_2$ :
+
+$x_1=0$ ,
+$x_2=x_2$
+
+The solution vector is as given below:
+
+\[\begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\x_2
+\end{bmatrix}\]
+
+\vspace{5mm}
+
+Representing it as a linear combination of vectors:
+
+\[\ \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=x_2\begin{bmatrix}
+    0\\1
+\end{bmatrix}\]
+
+For $\lambda = 45$ , the eigen vector is $\left [\begin{array}{c}
+     0  \\
+     1 
+\end{array}\right]$
+
+\vspace{8mm}
+
+\textit{Calculating for $\lambda = 5$:}
+
+Reiterating the eigenvector formula:
+
+\begin{equation*}
+    (A-\lambda I)x=0 
+\end{equation*}
+
+\[\begin{pmatrix}\begin{bmatrix}
+    5&0\\0&45
+\end{bmatrix}- \begin{bmatrix}
+    5&0\\0&5
+\end{bmatrix} \end{pmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\0
+\end{bmatrix}\]
+
+\[ \begin{bmatrix}
+    0&0\\0&40
+\end{bmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\0
+\end{bmatrix}\]
+
+\vspace{5mm}
+
+Applying Gaussian elimination to the augmented matrix to reduce it to Row Echelon Form. The transformation begins by swapping the rows because as per Row-Echelon matrix property, all rows with only zeros must be at the bottom of the matrix. (Vincent, 2021)
+
+\vspace{5mm}
+
+$\left [ \begin{array}{cc|c}
+0&0&0\\0&40&0
+\end{array} \right ] \rightarrow Swapping R_2 and R_1\rightarrow\left [ \begin{array}{cc|c}
+0&40&0\\0&0&0
+\end{array} \right ]\rightarrow R_2\frac{1}{40} \rightarrow \left [\begin{array}{cc|cc}
+     0&1&0  \\
+     0&0&0 
+\end{array} \right]$
+
+\vspace{8mm}
+
+Solving for null space:
+
+\[ \begin{bmatrix}
+    0&1\\0&0
+\end{bmatrix} \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    0\\0
+\end{bmatrix}\]
+
+\vspace{5mm}
+
+Solving this system in terms of free variables, we get below values of $x_1$ and $x_2$ :
+
+$x_2=0$
+$x_1=x_1$ 
+
+Hence, the solution vector is as given below:
+
+\[\begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=\begin{bmatrix}
+    x_1\\0
+\end{bmatrix}\]
+Representing it in a linear combination of vectors:
+\[\ \begin{bmatrix}
+    x_1\\x_2
+\end{bmatrix}=x_1\begin{bmatrix}
+    1\\0
+\end{bmatrix}\]
+
+For $\lambda = 5$ , the eigen vector is $\left [\begin{array}{c}
+     1  \\
+     0 
+\end{array}\right]$
+
+\vspace{10mm}
+
+\textbf{iv)Find $V^T$}
+
+The right singular vector or orthogonal matrix is a cmbination of eigen vectors of $A^TA$ .
+
+Hence we can write it as below:
+
+\[V=\begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}\]
+
+\begin{equation}
+ \boxed{ V^T=\begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}}
+\end{equation}
+
+\paragraph{Step 2: Find $\Sigma$}
+
+\subparagraph{}
+
+$\Sigma$ is an $n\times n$ matrix with singular values of $A$ on the main diagonal and the rest of the entries as 0 (Zuniga,2021).
+The singular values $\sigma_i$  of $A$ are square roots of eigen values of $A^TA$ .
+Thus, referring to (22), we get
+
+\begin{align}
+    \sigma_1=\sqrt{5}\ and\ \sigma_2=\sqrt{45} 
+\end{align}
+
+\begin{align}
+   \boxed{\Sigma=\begin{bmatrix}
+    \sqrt{5}&0\\0&\sqrt{45}
+\end{bmatrix} }
+\end{align}
+
+
+
+\newpage
+\paragraph{Step 3: Find left signular vectors of $A$ for matrix $U$}
+
+\subparagraph{}
+
+Let us find the left singular vectors $u_1$ and $u_2$ for matrix $U$
+
+From formula (C), we have, 
+
+$$A=U\cdot\Sigma \cdot V^T$$
+
+Multiply each side by $V$,
+
+$$ A\cdot V=U\cdot\Sigma \cdot V^T\cdot V$$
+
+Since $V$ and $V^T$ are orthogonal, it follows that $V^TV=I$. Therefore the equation we get is,
+
+$$A\cdot V=U\cdot \Sigma$$
+
+Thus, for finding invidual left singular vectors $u_i$ , we can use the below formula,
+
+\begin{align*} \tag{\color{blue}F} 
+\begin{split}
+    \color{blue} A\cdot v_i=u_i\cdot\sigma_i   
+\end{split} \\
+\begin{split}
+    \color{blue}u_i=\frac{A\cdot v_i}{\sigma_i}
+\end{split}
+\end{align*}
+    
+
+Using formula (F), to find vectors $u_1$ and $u_2$:
+
+\begin{align*}
+\begin{split}
+    u_1&=\frac{1}{\sigma_1}\cdot A\cdot v_1 
+\end{split}\\
+\begin{split}
+    = \frac{1}{\sqrt{5}} \cdot\begin{bmatrix}
+    2&-3\\1&6
+\end{bmatrix} \cdot \begin{bmatrix}
+    0\\1
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2}{\sqrt{5}}&\frac{-3}{\sqrt{5}}\\\frac{1}{\sqrt{5}}&\frac{6}{\sqrt{5}}
+\end{bmatrix} \cdot \begin{bmatrix}
+    0\\1
+\end{bmatrix}
+\end{split} \\
+\begin{split}
+        u_1&= \begin{bmatrix}
+    \frac{-3}{\sqrt{5}} \\ \frac{6}{\sqrt{5}}
+\end{bmatrix}
+\end{split}
+\end{align*}
+
+
+
+\begin{align*}
+    \begin{split}
+        u_2&=\frac{1}{\sigma_2}\cdot A\cdot v_2
+    \end{split} \\
+    \begin{split}
+        = \frac{1}{\sqrt{45}} \cdot\begin{bmatrix}
+    2&-3\\1&6
+\end{bmatrix} \cdot \begin{bmatrix}
+    1\\0
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2}{\sqrt{45}}&\frac{-3}{\sqrt{45}}\\\frac{1}{\sqrt{45}}&\frac{6}{\sqrt{45}}
+\end{bmatrix} \cdot \begin{bmatrix}
+    1\\0
+\end{bmatrix}
+    \end{split} \\
+    \begin{split}
+       u_2&= \begin{bmatrix}
+    \frac{2}{3\sqrt{5}} \\ \frac{1}{3\sqrt{5}}
+\end{bmatrix} 
+    \end{split}
+\end{align*}
+
+Computing $U$ as a combination of $u_1$ and $u_2$ as,
+
+\[\ U=\begin{bmatrix}
+    u_1&u_2
+\end{bmatrix} = \begin{bmatrix}
+    \frac{-3}{\sqrt{5}}&\frac{2}{3\sqrt{5}}\\\frac{6}{\sqrt{5}}&\frac{1}{3\sqrt{5}}
+\end{bmatrix} \]
+
+\begin{align}
+    \boxed{U= \frac{1}{\sqrt{5}}\cdot\begin{bmatrix}
+    -3&\frac{2}{3}\\6&\frac{1}{3}
+\end{bmatrix}}
+\end{align} 
+
+\paragraph{Step 4: Calculate SVD of matrix $A$}
+
+\subparagraph{}
+
+
+From results (23),(25),(26), we calculate the SVD of matrix $A$, which should be exactly equal to the original given matrix $A$.
+
+$$A=U\cdot \Sigma \cdot V^T$$
+
+\[=\frac{1}{\sqrt{5}}\cdot\begin{bmatrix}
+    -3&\frac{2}{3}\\6&\frac{1}{3}
+\end{bmatrix}\cdot \begin{bmatrix}
+    \sqrt{5}&0\\0&\sqrt{45}
+\end{bmatrix}\cdot \begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}\]
+
+\[=\begin{bmatrix}
+    \frac{-3}{\sqrt{5}}&\frac{2}{3\sqrt{5}}\\\frac{6}{\sqrt{5}}&\frac{1}{3\sqrt{5}}
+\end{bmatrix} \cdot \begin{bmatrix}
+    \sqrt{5}&0\\0&\sqrt{45}
+\end{bmatrix}\cdot \begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix} \]
+
+Simplifying the denominator for matrix $U$ by multiplying all elements by $\frac{\sqrt{5}}{\sqrt{5}}$ and rewriting $\sqrt{45}$ as $3\sqrt{5}$
+
+\begin{align*}
+    \begin{split}
+        A &= \begin{bmatrix}
+    \frac{-3\sqrt{5}}{5}&\frac{2\sqrt{5}}{15}\\\frac{6\sqrt{5}}{5}&\frac{\sqrt{5}}{15}
+\end{bmatrix} \cdot \begin{bmatrix}
+    \sqrt{5}&0\\0&3\sqrt{5}
+\end{bmatrix}\cdot \begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}
+    \end{split} \\
+    \begin{split}
+        &=\begin{bmatrix}
+    \frac{-3 \times 5}{5}+0&0+\frac{2\times 3\times 5 }{15}\\\frac{6\times 5}{5}+0&0+\frac{5\times 3}{15}
+\end{bmatrix} \cdot \begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}
+    \end{split} \\
+    \begin{split}
+        &=\begin{bmatrix}
+    -3&2\\6&1
+\end{bmatrix} \cdot \begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}
+    \end{split}
+\end{align*}
+
+\begin{equation}
+    \boxed{A =\begin{bmatrix}
+     2&-3\\1&6 \end{bmatrix}}
+\end{equation}
+
+And this is our original given matrix $A$.
+
+
+\subsubsection*{c) Determine SVD of $A^T$}
+
+For the given matrix $A$, its tranpose is computed as, \[A^T=\begin{bmatrix}
+    2&1\\-3&6
+\end{bmatrix}\]
+
+Referring to SVD formula (C), its transpose version as per the property of transpose is given by,
+
+\begin{align*}
+    A^T&=(U\cdot \Sigma \cdot V^T)^{T} \\
+    &=U^T\cdot \Sigma^T \cdot V
+\end{align*}
+
+Since the singular values in $\Sigma$ remain the same, we reorder the terms (Reilly,2025) in the above equation to derive the SVD of $A^T$,
+
+\begin{equation}
+    \color{blue} A^T=V\cdot\Sigma \cdot U^T \tag{G}
+\end{equation}
+
+
+From equations (23), (25) and (26), we compute transpose of $U$, $\Sigma$. We get:
+
+
+\[U^T=\frac{1}{\sqrt{5}}\cdot\begin{bmatrix}
+    -3&6\\ \frac{2}{3}&\frac{1}{3}
+\end{bmatrix} , \Sigma^T=\begin{bmatrix}
+    \sqrt{5}&0\\0&\sqrt{45}
+\end{bmatrix}, V=\begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}\]
+
+Calculating SVD of $A^T$ as below:
+
+\begin{align*}
+    \begin{split}
+        A^T&= \begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}\cdot\begin{bmatrix}
+    \sqrt{5}&0\\0&\sqrt{45}
+\end{bmatrix} \cdot \frac{1}{\sqrt{5}}\cdot\begin{bmatrix}
+    -3&6\\ \frac{2}{3}&\frac{1}{3}
+\end{bmatrix} 
+    \end{split} \\
+    \begin{split}
+        &=\begin{bmatrix}
+    0&1\\1&0
+\end{bmatrix}\cdot\begin{bmatrix}
+    \sqrt{5}&0\\0&\sqrt{45}
+\end{bmatrix} \cdot\begin{bmatrix}
+    \frac{-3}{\sqrt{5}}&\frac{6}{\sqrt{5}}\\ \frac{2}{3\sqrt{5}}&\frac{1}{3\sqrt{5}}
+\end{bmatrix}
+    \end{split} \\
+    \begin{split}
+        &=\begin{bmatrix}
+    0\cdot \sqrt{5}+1\cdot 0&0\cdot 0+1\cdot \sqrt{45}\\
+    1\cdot \sqrt{5}+0&0+0
+\end{bmatrix} \cdot\begin{bmatrix}
+    \frac{-3}{\sqrt{5}}&\frac{6}{\sqrt{5}}\\ \frac{2}{3\sqrt{5}}&\frac{1}{3\sqrt{5}}
+\end{bmatrix} 
+    \end{split}
+\end{align*}
+
+
+
+Simplifying the denominator for matrix $U$ by multiplying all elements by $\frac{\sqrt{5}}{\sqrt{5}}$ and rewriting $\sqrt{45}$ as $3\sqrt{5}$
+
+\begin{align*}
+    \begin{split}
+        A&=\begin{bmatrix}
+    0&\sqrt{45}\\ \sqrt{5}&0
+\end{bmatrix}\cdot\begin{bmatrix}
+    \frac{-3}{\sqrt{5}}&\frac{6}{\sqrt{5}}\\ \frac{2}{3\sqrt{5}}&\frac{1}{3\sqrt{5}}
+\end{bmatrix}
+    \end{split} \\
+    \begin{split}
+        &=\begin{bmatrix}
+    0&3\sqrt{5}\\ \sqrt{5}&0
+\end{bmatrix}\cdot\begin{bmatrix}
+    \frac{-3\sqrt{5}}{5}&\frac{6\sqrt{5}}{5}\\ \frac{2\sqrt{5}}{15}&\frac{\sqrt{5}}{15}
+\end{bmatrix}
+    \end{split}
+\end{align*}
+
+\begin{equation}
+    \boxed{ A^T=\begin{bmatrix}
+    2&1\\-3&6
+\end{bmatrix}}
+\end{equation}
+
+
+\newpage
+\textbf{References}:
+
+Hass, Joel, et al. Thomas' Calculus in SI Units, Pearson Education, Limited, 2019. ProQuest Ebook Central, http://ebookcentral.proquest.com/lib/liverpool/detail.action?docID=5735657.
+
+Lipschutz, S. (2009) Linear algebra /. New York : McGraw-Hill,.A square matrix $A \in R^{n\times n}$ is said to be invertible if its deteminant is not equal to 0 (Lipschutz,2008,section 2.9, Inverse of a 2X2 Matrix).
+
+Vincent, R, J. (2021).’Singular Value Decomposition (SVD) — Working Example’. \newline Available: https://medium.com/intuition/singular-value-decomposition-svd-working-example-c2b6135673b5. (Accessed: 05 May 2025)
+
+
+Zuniga, C. and Society of Photo-optical Instrumentation Engineers, publisher (2021) \textit{Singular value decomposition for imaging applications / Christian Zuniga.} Bellingham, WA: Society of Photo-Optical Instrumentation Engineers. Available at: https://doi.org/10.1117/3.2611523.
+
+Reilly, J. (2025) \textit{Fundamentals of Linear Algebra for Signal Processing / by James Reilly.} 1st ed. 2025. Cham: Springer Nature Switzerland. Available at: https://doi.org/10.1007/978-3-031-68915-4.
+
+Sharma, S. (2022).'Hessian Matrix'. \newline Available:https://sid-sharma1990.medium.com/hessian-matrix-f9863f934075#:~:text=The%20Hessian%20matrix%20will%20always,3×3%20dimension%20matrix. (Accessed: 05 May 2025)
+
+Fred E. Szabo (2015) ‘M’, in The Linear Algebra Survival Guide. Elsevier Inc, pp. 219–233. Available at: https://doi.org/10.1016/B978-0-12-409520-5.50020-5.
+
+
+\end{document}
